@@ -238,4 +238,6 @@ You can use SQLMap like this:
 sqlmap -u "http://localhost:9090/xvwa/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=xyz" --batch
 You may need to copy cookies from your browser session to stay authenticated.
 
-
+-------------------------------------------------------------------------------------------------------
+Juice shop payload
+- or 1=1;--
