@@ -181,3 +181,34 @@ Test 3: Auth Bypass / Session Fixation
 Inspect cookies — try reusing session cookies to switch roles
 
 Gin and Juice is vulnerable to OWASP Top 10 issues and CI/CD pipeline misconfigurations.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 1. List all containers (running & stopped):
+bash
+Copy
+Edit
+docker ps -a
+This shows container IDs, names, and statuses.
+
+🗑️ 2. Remove a container by name or ID:
+bash
+Copy
+Edit
+docker rm <container_name_or_id>
+Example:
+
+bash
+Copy
+Edit
+sudo docker rm xvwa
+🛑 3. If the container is still running, stop it first:
+bash
+Copy
+Edit
+sudo docker stop xvwa
+sudo docker rm xvwa
+🧨 4. Force-remove a running container (not recommended unless necessary):
+bash
+Copy
+Edit
+sudo docker rm -f xvwa
+
