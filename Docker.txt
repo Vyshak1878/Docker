@@ -183,32 +183,61 @@ Inspect cookies — try reusing session cookies to switch roles
 Gin and Juice is vulnerable to OWASP Top 10 issues and CI/CD pipeline misconfigurations.
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  1. List all containers (running & stopped):
-bash
-Copy
-Edit
+
 docker ps -a
 This shows container IDs, names, and statuses.
 
-🗑️ 2. Remove a container by name or ID:
-bash
-Copy
-Edit
+2. Remove a container by name or ID:
+
 docker rm <container_name_or_id>
 Example:
-
-bash
-Copy
-Edit
 sudo docker rm xvwa
-🛑 3. If the container is still running, stop it first:
-bash
-Copy
-Edit
+
+3. If the container is still running, stop it first:
+
 sudo docker stop xvwa
 sudo docker rm xvwa
-🧨 4. Force-remove a running container (not recommended unless necessary):
-bash
-Copy
-Edit
+
+4. Force-remove a running container (not recommended unless necessary):
+
 sudo docker rm -f xvwa
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+How to Use SQLMap in Kali Linux
+SQLMap is pre-installed in most versions of Kali Linux.
+
+📌 Check if it’s installed:
+sqlmap --version
+If it shows the version, you're good to go. If not, install it:
+
+sudo apt update
+sudo apt install sqlmap
+
+Basic SQLMap Usage
+1. Test a URL for SQL Injection
+
+sqlmap -u "http://example.com/page.php?id=1" --batch
+--batch runs with default answers to prompts.
+
+2. Find Databases
+sqlmap -u "http://example.com/page.php?id=1" --dbs
+
+3. Find Tables in a Database
+sqlmap -u "http://example.com/page.php?id=1" -D database_name --tables
+
+4. Find Columns in a Table
+sqlmap -u "http://example.com/page.php?id=1" -D database_name -T table_name --columns
+
+5. Dump Table Data
+sqlmap -u "http://example.com/page.php?id=1" -D database_name -T table_name --dump
+Tip: Use it on Local Test Apps
+If you're running test environments like:
+
+bWAPP → http://localhost:8080/bWAPP/sqli_1.php?id=1
+
+XVWA → http://localhost:9090/xvwa/vulnerabilities/sqli/
+
+You can use SQLMap like this:
+sqlmap -u "http://localhost:9090/xvwa/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=xyz" --batch
+You may need to copy cookies from your browser session to stay authenticated.
+
 
